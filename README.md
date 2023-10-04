@@ -8,4 +8,5 @@ Le SGBD dispose du compte user avec comme mot de passe pass et du compte sql ave
 Sur l'OS root et user ont le même mot de passe (ip, password) :
 
 172.26.82.56
+
 4pdmo0IC
