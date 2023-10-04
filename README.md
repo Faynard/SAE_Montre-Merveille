@@ -6,5 +6,6 @@ La VM dispose de trois comptes root, user et sql, root et user disposent d'un ac
 Le SGBD dispose du compte user avec comme mot de passe pass et du compte sql avec comme mot de passe sql
 
 Sur l'OS root et user ont le même mot de passe (ip, password) :
+
 172.26.82.56
 4pdmo0IC
