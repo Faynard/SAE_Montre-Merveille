@@ -11,21 +11,26 @@ Il vous faudra aussi installer [`Composer`](https://getcomposer.org/doc/00-intro
 
 executer chaque commandes suivantes:
 1. `sudo apt-get install composer`
-2. `sudo apt-get install php-xml`
-3. `sudo apt-get install php-dom`
 
-**Répéter cette commande 2 fois !!!**
-4. `sudo apt-get install tzdata`
+2. `sudo apt-get update`
 
-Ensuite aller dans un dossier sur votre pc pour cloner le repo actuel:
-5. `git clone https://gitlab.univ-nantes.fr/pub/but/but2/sae3.real.01_developpement_d_une_application/alt/eq_alt_01_bausson-maximilien_hay-thomas_le-bras-mathieu_vandemeulebroucke-bertin-nolan.git`
+3. `sudo apt-get install php-xml`
+4. `sudo apt-get install php-dom`
 
-# Lancer l'application pour la 1ere fois
+**Répéter cette commande 2 fois !!!**. 
+5. `sudo apt-get install tzdata`
 
-Installer les dépendances:
-6. `composer install --ignore-platform-reqs`
+Ensuite aller dans un dossier sur votre pc pour cloner le repo actuel:  
+6. `git clone https://gitlab.univ-nantes.fr/pub/but/but2/sae3.real.01_developpement_d_une_application/alt/eq_alt_01_bausson-maximilien_hay-thomas_le-bras-mathieu_vandemeulebroucke-bertin-nolan.git`
 
-Lancer le projet laravel 
-7. `cp .env.example .env`
-8. `php artisan migrate`
-9. `php artisan serve`
+# Lancer l'application pour la 1ere fois. 
+  
+`cd 'nouveau dossier qui vient d'être créer'`
+
+Installer les dépendances:  
+7. `composer install --ignore-platform-reqs`
+
+Lancer le projet laravel  
+8. `cp .env.example .env`  
+9. `php artisan migrate`  
+10. `php artisan serve`  
