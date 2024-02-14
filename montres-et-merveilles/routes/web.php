@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\AcceuilController::class, 'index'])->name('acceuil.index');
 
-Route::prefix('user')->name('user.')->controller(UserController::class)->group(
-    function () {
-        Route::get('/login', 'login')->name('login');
-        Route::post('/login', 'authenticate')->name('authenticate');
-    }
-);
+Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
+	Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'authenticate')->name('authenticate');
+
+    Route::get('register', 'register')->name('register');
+    Route::post('register', 'doRegister')->name('register');
+});
