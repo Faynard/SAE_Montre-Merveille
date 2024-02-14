@@ -10,6 +10,7 @@ Il vous faudra aussi installer [`Composer`](https://getcomposer.org/doc/00-intro
 ## Développer sur les PC de l'IUT
 
 executer chaque commandes suivantes:
+
 1. `sudo apt-get install composer`
 
 2. `sudo apt-get update`
@@ -17,14 +18,13 @@ executer chaque commandes suivantes:
 3. `sudo apt-get install php-xml`
 4. `sudo apt-get install php-dom`
 
-**Répéter cette commande 2 fois !!!**. 
-5. `sudo apt-get install tzdata`
+**Répéter cette commande 2 fois !!!**. 5. `sudo apt-get install tzdata`
 
 Ensuite aller dans un dossier sur votre pc pour cloner le repo actuel:  
 6. `git clone https://gitlab.univ-nantes.fr/pub/but/but2/sae3.real.01_developpement_d_une_application/alt/eq_alt_01_bausson-maximilien_hay-thomas_le-bras-mathieu_vandemeulebroucke-bertin-nolan.git`
 
-# Lancer l'application pour la 1ere fois. 
-  
+# Lancer l'application pour la 1ere fois.
+
 `cd 'nouveau dossier qui vient d'être créer'`
 
 Installer les dépendances:  
@@ -33,4 +33,4 @@ Installer les dépendances:
 Lancer le projet laravel  
 8. `cp .env.example .env`  
 9. `php artisan migrate`  
-10. `php artisan serve`  
+10. `php artisan serve`
