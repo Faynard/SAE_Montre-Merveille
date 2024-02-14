@@ -18,8 +18,10 @@ Route::get('/', [App\Http\Controllers\AcceuilController::class, 'index'])->name(
 
 Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
 	Route::get('/login', 'login')->name('login');
-    Route::post('/login', 'authenticate')->name('authenticate');
+    Route::post('/login', 'doLogin')->name('login');
 
     Route::get('register', 'register')->name('register');
     Route::post('register', 'doRegister')->name('register');
+
+    Route::post('logout', 'doLogout')->name('logout')->middleware('auth');
 });
