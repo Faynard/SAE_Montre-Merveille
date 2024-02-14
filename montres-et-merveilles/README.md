@@ -34,4 +34,4 @@ Lancer le projet laravel
 8. `cp .env.example .env`  
 9. `php artisan migrate`  
 10. `php artisan serve`
- 
+  
