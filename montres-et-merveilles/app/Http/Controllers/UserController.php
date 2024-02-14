@@ -38,7 +38,7 @@ class UserController extends Controller
         return view('login');
     }
 
-    public function authenticate(LoginRequest $request)
+    public function doLogin(LoginRequest $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -54,5 +54,12 @@ class UserController extends Controller
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
+    }
+
+    public function doLogout()
+    {
+        Auth::logout();
+
+        return redirect()->route('acceuil.index');
     }
 }
