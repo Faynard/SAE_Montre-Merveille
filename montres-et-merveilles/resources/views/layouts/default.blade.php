@@ -7,6 +7,8 @@
 
     <title>Montres & merveilles</title>
 
+    <link rel="stylesheet" href="css/app.css">
+
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
@@ -14,6 +16,25 @@
 </head>
 
 <body class="antialiased">
+    <nav class="flex items-center justify-center gap-16 font-['Comfortaa'] uppercase h-28">
+
+        <div class="flex gap-5">
+            <span>Nos montres</span>
+            <span>Contact</span>
+        </div>
+
+        <span class="flex flex-col gap-1">
+            <img src="{{ asset('images/logo.svg') }}" />
+            <img src="{{ asset('images/swiss-made.svg') }}" class="h-6" />
+        </span>
+
+        <div class="flex gap-5">
+            <span>Mon compte</span>
+            <span>Boutique</span>
+        </div>
+
+    </nav>
+
     <main>
         @yield('content')
     </main>
