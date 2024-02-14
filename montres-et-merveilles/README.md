@@ -9,19 +9,23 @@ Il vous faudra aussi installer [`Composer`](https://getcomposer.org/doc/00-intro
 
 ## Développer sur les PC de l'IUT
 
-[Installer `composer` sur Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-20-04)
+executer chaque commandes suivantes:
+1. `sudo apt-get install composer`
+2. `sudo apt-get install php-xml`
+3. `sudo apt-get install php-dom`
 
-Après cela, vous aurez une `segmentation fault` lorsque vous essayerez d'utiliser `composer`.
+**Répéter cette commande 2 fois !!!**
+4. `sudo apt-get install tzdata`
 
-Il vous faudra installer `tzdata` via `apt install tzdata`.  
-**Note**: Répéter cette commande deux fois.
+Ensuite aller dans un dossier sur votre pc pour cloner le repo actuel:
+5. `git clone https://gitlab.univ-nantes.fr/pub/but/but2/sae3.real.01_developpement_d_une_application/alt/eq_alt_01_bausson-maximilien_hay-thomas_le-bras-mathieu_vandemeulebroucke-bertin-nolan.git`
 
-# Lancer l'application pour 1ere fois
+# Lancer l'application pour la 1ere fois
 
-L'application se lance via la commande `php artisan serve`.
+Installer les dépendances:
+6. `composer install --ignore-platform-reqs`
 
-Il se peut que vous ayez besoin d'installer les dépendences avec `composer install --ignore-platform-reqs`
-
-Ensuite, créer un fichier .env à partir du fichier fourni `.env.example`, et renseigner les informations relatives à votre DB dans les clés `DB_`. Vérifier que votre service de base de données est actif.
-
-Enfin, éxecuter `php artisan migrate` afin de mettre à jour votre base de données avec les dernières migrations du projet.
+Lancer le projet laravel 
+7. `cp .env.example .env`
+8. `php artisan migrate`
+9. `php artisan serve`
