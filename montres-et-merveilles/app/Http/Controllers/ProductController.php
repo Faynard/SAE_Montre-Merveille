@@ -13,9 +13,14 @@ class ProductController extends Controller
         return view("catalog", ["products" => $products]);
     }
 
-    public function show(int $id) {
+    public function show(int $id)
+    {
 
         $product = Product::find($id);
+
+        if (!$product) {
+            abort(404);
+        }
 
         return view('product', ['product' => $product]);
     }

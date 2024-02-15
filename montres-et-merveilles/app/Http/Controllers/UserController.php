@@ -22,7 +22,7 @@ class UserController extends Controller
         $credentials = $request->validate([
             "firstname" => ["required"],
             "lastname" => ["required"],
-            "email" => ["required", "email"],
+            "email" => ["required", "email", "unique:users,email"],
             "password" => ["required", "confirmed"],
         ]);
 
@@ -102,6 +102,7 @@ class UserController extends Controller
         $user = Auth::user();
 
         User::destroy($user->id);
+        Auth::logout();
 
         return redirect()->route('acceuil.index');
     }
