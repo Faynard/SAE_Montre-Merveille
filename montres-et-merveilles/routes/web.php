@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\AcceuilController::class, 'index'])->name('acceuil.index');
 
 Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
-	Route::get('/login', 'login')->name('login');
+    Route::get('/login', 'login')->name('login');
     Route::post('/login', 'doLogin')->name('login');
 
     Route::get('register', 'register')->name('register');
