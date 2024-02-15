@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,4 +36,8 @@ Route::prefix('user')->name('user.')->controller(UserController::class)->group(f
 Route::prefix('product')->name('product.')->controller(ProductController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/{product}', 'show')->name('show');
+});
+
+Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function () {
+    Route::post('/add', 'add')->name('add')->middleware("auth");
 });

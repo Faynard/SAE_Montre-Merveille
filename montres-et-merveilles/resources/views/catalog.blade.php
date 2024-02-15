@@ -11,7 +11,7 @@
     @foreach ($products as $product)
     </br>
     <div>
-        <h3>{{ $product->name }}</h3>
+        <a href="{{ route('product.show', ['product'=> $product->id]) }}">{{ $product->name }}</a>
         <span>{{ $product->description }}</span>
         <h4>{{ $product->price }}€</h4>
     </div>
