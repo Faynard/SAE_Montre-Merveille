@@ -18,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\AcceuilController::class, 'index'])->name('acceuil.index');
 
+Route::get('/contact', function() {
+    return view('contact');
+})->name('contact.index');
+
+Route::get('/boutiques', function() {
+    return view('boutiques');
+})->name('boutiques.index');
+
 Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::post('/login', 'doLogin')->name('login');

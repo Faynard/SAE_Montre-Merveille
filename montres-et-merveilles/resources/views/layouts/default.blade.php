@@ -16,18 +16,18 @@
     <nav class="flex items-center justify-center gap-16 font-['Comfortaa'] uppercase h-28">
 
         <div class="flex gap-5">
-            <span>Nos montres</span>
-            <span>Contact</span>
+            <a href="{{ route('product.index') }}">Nos montres</a>
+            <a href="{{ route('contact.index') }}">Contact</a>
         </div>
 
-        <span class="flex flex-col gap-1">
+        <a href="{{ route('acceuil.index') }}" class="flex flex-col gap-1">
             <img src="{{ asset('images/logo.svg') }}" />
             <img src="{{ asset('images/swiss-made.svg') }}" class="h-6" />
-        </span>
+        </a>
 
         <div class="flex gap-5">
-            <span>Mon compte</span>
-            <span>Boutique</span>
+            <a href="{{ route('user.profile') }}">Mon compte</a>
+            <a href="{{ route('boutiques.index') }}">Boutiques</a>
         </div>
 
     </nav>
