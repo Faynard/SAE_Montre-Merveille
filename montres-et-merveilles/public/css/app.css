@@ -16,3 +16,38 @@
 * {
     font-family: 'Comfortaa';
 }
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+header.notAccueill {
+    position: relative;
+    background-color: white;
+}
+
+#navbar {
+    background-color: transparent;
+    width: 100%;
+    transform: translateY(0);
+    transition: background-color 0.7s ease-in-out, transform 0.5s linear;
+}
+
+#navbar.scrolledDown {
+    transform: translateY(-100px);
+}
+
+#navbar.scrolledUp {
+    transition: background-color 0.7s ease-in-out, transform 0.2s linear;
+    transform: translateY(0);
+    color: black;
+    background-color: white;
+}
+
+#navbar.whiteText {
+    color: white;
+}

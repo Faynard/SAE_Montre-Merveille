@@ -1,0 +1,49 @@
+.animated-title {
+    overflow: hidden;
+    height: 200px;
+}
+
+.title-animate {
+    position: relative;
+    top: 100%;
+    left: 0%;
+    animation: slide-in 1s forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateY(0%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(-100%);
+    }
+}
+
+.animated-description {
+    overflow: hidden;
+    width: 100%;
+}
+
+.description-animate {
+    position: relative;
+    opacity: 0;
+    left: 0%;
+    animation: slide-right 1s forwards;
+    animation-delay: 0.5s;
+    width: 100%;
+}
+
+@keyframes slide-right {
+    0% {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+}
+
