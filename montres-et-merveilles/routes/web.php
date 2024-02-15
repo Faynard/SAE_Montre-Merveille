@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,10 @@ Route::prefix('user')->name('user.')->controller(UserController::class)->group(f
     Route::post('register', 'doRegister')->name('register');
 
     Route::post('logout', 'doLogout')->name('logout')->middleware('auth');
+});
+
+Route::prefix('product')->name('product.')->controller(ProductController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/{product}', 'show')->name('show');
+    // Route::post('/{product}/add-to-cart', 'addToCart')->name('add-to-cart')->middleware('auth');
 });
