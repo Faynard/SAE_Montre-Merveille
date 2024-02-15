@@ -11,6 +11,9 @@ class UserController extends Controller
 {
     public function register()
     {
+        if (Auth::check()) {
+            return redirect()->route('acceuil.index');
+        }
         return view("register");
     }
 
@@ -35,6 +38,9 @@ class UserController extends Controller
 
     public function login()
     {
+        if (Auth::check()) {
+            return redirect()->route('acceuil.index');
+        }
         return view('login');
     }
 
