@@ -1,0 +1,26 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: php:8.2-cli
+
+  before_script:
+    - cd montres-et-merveilles/
+    - apt-get update -yqq
+    - apt-get install -yqq libzip-dev zip unzip
+    # - docker-php-ext-install pdo_mysql zip
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+
+  script:
+    - php artisan test
+
+  cache:
+    paths:
+      - vendor/
+
+  artifacts:
+    paths:
+      - vendor/
+      - node_modules/
