@@ -25,10 +25,14 @@ Route::prefix('user')->name('user.')->controller(UserController::class)->group(f
     Route::post('register', 'doRegister')->name('register');
 
     Route::post('logout', 'doLogout')->name('logout')->middleware('auth');
+
+    Route::get('profile', 'profile')->name('profile')->middleware('auth');
+    Route::put('profile', 'update')->name('profile')->middleware('auth');
+
+    Route::delete('profile', 'delete')->name('profile')->middleware('auth');
 });
 
 Route::prefix('product')->name('product.')->controller(ProductController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/{product}', 'show')->name('show');
-    // Route::post('/{product}/add-to-cart', 'addToCart')->name('add-to-cart')->middleware('auth');
 });

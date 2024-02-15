@@ -62,4 +62,41 @@ class UserController extends Controller
 
         return redirect()->route('acceuil.index');
     }
+
+    public function profile()
+    {
+        $user = Auth::user();
+
+        return view('profile', ['user' => $user]);
+    }
+
+    public function update(LoginRequest $request)
+    {
+        $user = Auth::user();
+
+        $credentials = $request->validate([
+            "firstname" => ["required"],
+            "lastname" => ["required"],
+            "password" => ["required", "confirmed"],
+        ]);
+
+        $user = User::find($user->id);
+
+        $user->update([
+            "firstname" => $credentials["firstname"],
+            "lastname" => $credentials["lastname"],
+            "password" => Hash::make($credentials["password"]),
+        ]);
+
+        return redirect()->route('user.profile');
+    }
+
+    public function delete()
+    {
+        $user = Auth::user();
+
+        User::destroy($user->id);
+
+        return redirect()->route('acceuil.index');
+    }
 }
