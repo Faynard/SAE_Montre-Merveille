@@ -2,3 +2,17 @@
     font-family: 'Comfortaa';
     src: url("../fonts/Comfortaa.ttf");
 }
+
+@font-face {
+    font-family: 'Cinzel';
+    src: url("../fonts/Cinzel.ttf");
+}
+
+@font-face {
+    font-family: 'NotoSerif';
+    src: url("../fonts/NotoSerif.ttf");
+}
+
+* {
+    font-family: 'Comfortaa';
+}
