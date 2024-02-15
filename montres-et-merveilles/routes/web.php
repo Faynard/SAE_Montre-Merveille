@@ -26,6 +26,10 @@ Route::get('/boutiques', function() {
     return view('boutiques');
 })->name('boutiques.index');
 
+Route::get('/admin', function() {
+    return view('admin');
+})->name('admin.index')->middleware('auth', 'authorized');
+
 Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::post('/login', 'doLogin')->name('login');
