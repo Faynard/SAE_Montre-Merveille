@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Database\Factories\ProductFactory;
 
 class ProductControllerTest extends TestCase
 {
@@ -22,6 +21,20 @@ class ProductControllerTest extends TestCase
         foreach ($products as $product) {
             $response->assertSee($product->name);
         }
+    }
+
+    public function test_index_with_name_filter(): void
+    {
+        //  C'est peut être un flaky test
+        //      Si deux éléments ont le même name, le test ne marchera pas
+        $products = Product::factory()->count(3)->create();
+
+        $response = $this->get(route("product.index", "name=" . $products[0]->name));
+
+        $response->assertStatus(200);
+        $response->assertSee($products[0]->name);
+        $response->assertDontSee($products[1]->name);
+        $response->assertDontSee($products[2]->name);
     }
 
     public function test_show_product_exists(): void

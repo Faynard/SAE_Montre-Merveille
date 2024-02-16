@@ -42,8 +42,9 @@
     <div class="grid grid-cols-3 gap-4">
         @foreach ($products as $product)
         <article class="bg-neutral-200 p-6 flex flex-col items-center gap-6 group">
-            <img class="w-40 drop-shadow-lg transition ease-in group-hover:scale-105 duration-500"
-                src="{{ asset('images/montre_1.png') }}" />
+            <a href="{{ route('product.show', ['product' => $product->id]) }}" class="text-lg font-bold"><img
+                    class="w-40 drop-shadow-lg transition ease-in group-hover:scale-105 duration-500"
+                    src="{{ asset('images/montre_1.png') }}" /></a>
 
             <p class="flex flex-col items-center">
                 <a href="{{ route('product.show', ['product' => $product->id]) }}" class="text-lg font-bold">{{
