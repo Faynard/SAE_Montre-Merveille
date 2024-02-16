@@ -17,7 +17,7 @@ class AuthorizedAdmin
     {
 
         if (auth()->user()->role !== 'admin') {
-            return redirect()->route('acceuil.index');
+            return redirect()->route('accueil.index');
         }
 
         return $next($request);

@@ -12,7 +12,7 @@ class UserController extends Controller
     public function register()
     {
         if (Auth::check()) {
-            return redirect()->route('acceuil.index');
+            return redirect()->route('accueil.index');
         }
         return view("register");
     }
@@ -33,13 +33,13 @@ class UserController extends Controller
             "password" => Hash::make($credentials["password"]),
         ]);
 
-        return redirect()->intended(route("acceuil.index"));
+        return redirect()->intended(route("accueil.index"));
     }
 
     public function login()
     {
         if (Auth::check()) {
-            return redirect()->route('acceuil.index');
+            return redirect()->route('accueil.index');
         }
         return view('login');
     }
@@ -54,7 +54,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('acceuil.index'));
+            return redirect()->intended(route('accueil.index'));
         }
 
         return back()->withErrors([
@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('acceuil.index');
+        return redirect()->route('accueil.index');
     }
 
     public function profile()
@@ -104,6 +104,6 @@ class UserController extends Controller
         User::destroy($user->id);
         Auth::logout();
 
-        return redirect()->route('acceuil.index');
+        return redirect()->route('accueil.index');
     }
 }

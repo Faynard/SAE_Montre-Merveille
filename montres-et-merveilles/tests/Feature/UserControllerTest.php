@@ -42,7 +42,7 @@ class UserControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertViewIs("acceuil");
+        $response->assertViewIs("accueil");
         $this->assertDatabaseHas("users", ["firstname" => $user["firstname"]]);
         $this->assertDatabaseCount("users", 1);
     }
@@ -69,7 +69,7 @@ class UserControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertViewIs("acceuil");
+        $response->assertViewIs("accueil");
         $this->assertDatabaseCount("users", 1);
     }
 
@@ -93,7 +93,7 @@ class UserControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertViewIs("acceuil");
+        $response->assertViewIs("accueil");
         $this->assertDatabaseCount("users", 0);
     }
 
@@ -118,7 +118,7 @@ class UserControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertViewIs("acceuil");
+        $response->assertViewIs("accueil");
         $this->assertGuest();
     }
 
@@ -135,7 +135,7 @@ class UserControllerTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertViewIs("acceuil");
+        $response->assertViewIs("accueil");
         $this->assertAuthenticatedAs($user);
     }
 
@@ -163,7 +163,7 @@ class UserControllerTest extends TestCase
         $response = $this->followingRedirects()->post(route("user.logout"));
 
         $response->assertStatus(200);
-        $response->assertViewIs("acceuil");
+        $response->assertViewIs("accueil");
         $this->assertGuest();
     }
 
@@ -213,7 +213,7 @@ class UserControllerTest extends TestCase
         $user = User::find($user["id"]);
 
         $response->assertStatus(200);
-        $response->assertViewIs("acceuil");
+        $response->assertViewIs("accueil");
         $this->assertNotEquals("", $user->firstname);
     }
 
@@ -225,7 +225,7 @@ class UserControllerTest extends TestCase
         $response = $this->followingRedirects()->delete(route("user.profile"));
 
         $response->assertStatus(200);
-        $response->assertViewIs("acceuil");
+        $response->assertViewIs("accueil");
         $this->assertDatabaseCount("users", 0);
         $this->assertGuest();
     }
