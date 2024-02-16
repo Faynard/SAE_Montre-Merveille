@@ -18,15 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\AcceuilController::class, 'index'])->name('acceuil.index');
 
-Route::get('/contact', function() {
+Route::get('/contact', function () {
     return view('contact');
 })->name('contact.index');
 
-Route::get('/boutiques', function() {
+Route::get('/boutiques', function () {
     return view('boutiques');
 })->name('boutiques.index');
 
-Route::get('/admin', function() {
+Route::get('/admin', function () {
     return view('admin');
 })->name('admin.index')->middleware('auth', 'authorized');
 
