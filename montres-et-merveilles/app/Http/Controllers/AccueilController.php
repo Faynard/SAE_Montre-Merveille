@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-class AcceuilController extends Controller
+class AccueilController extends Controller
 {
     public function index()
     {
-        return view('acceuil');
+        return view('accueil');
     }
 }

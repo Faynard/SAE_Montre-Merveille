@@ -18,7 +18,7 @@
 
                 <div class="animated-description">
                     <p class="description-animate w-2/5">
-                        Montres & Mervéilles dévoile une nouvelle édition limitée de la Royal Oak Concept Tourbillon Volant,
+                        Montres & Merveilles dévoile une nouvelle édition limitée de la Royal Oak Concept Tourbillon Volant,
                         imaginée
                         en collaboration avec la créatrice de Haute Couture Tamara Ralph.
                     </p>

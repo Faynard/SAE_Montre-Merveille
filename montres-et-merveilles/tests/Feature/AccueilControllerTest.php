@@ -11,7 +11,7 @@ class AccueilControllerTest extends TestCase
 
     public function test_accueil_returns_a_successful_response(): void
     {
-        $response = $this->get(route("acceuil.index"));
+        $response = $this->get(route("accueil.index"));
 
         $response->assertStatus(200);
     }

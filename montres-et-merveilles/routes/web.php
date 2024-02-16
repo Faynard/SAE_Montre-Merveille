@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\AcceuilController::class, 'index'])->name('acceuil.index');
+Route::get('/', [App\Http\Controllers\AccueilController::class, 'index'])->name('accueil.index');
 
 Route::get('/contact', function () {
     return view('contact');

@@ -33,7 +33,7 @@
                 <a href="{{ route('contact.index') }}">Contact</a>
             </div>
 
-            <a href="{{ route('acceuil.index') }}" class="flex flex-col gap-1">
+            <a href="{{ route('accueil.index') }}" class="flex flex-col gap-1">
                 <img id="logo" data-alt-src="{{ asset('images/logo-white.svg') }}"
                     src="{{ asset('images/logo.svg') }}" />
                 <img id="swiss-logo" data-alt-src="{{ asset('images/swiss-made-white.svg') }}"
