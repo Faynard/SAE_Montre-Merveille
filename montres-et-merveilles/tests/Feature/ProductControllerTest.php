@@ -23,6 +23,49 @@ class ProductControllerTest extends TestCase
         }
     }
 
+    public function test_index_with_page(): void
+    {
+        $products = Product::factory()->count(12)->create();
+
+        $response = $this->get(route('product.index', ["page" => 2]));
+
+        $response->assertStatus(200);
+
+        for ($i = 9; $i < 12; $i++) {
+            $response->assertSee($products[$i]->name);
+        }
+    }
+
+    public function test_index_with_empty_page(): void
+    {
+        $products = Product::factory()->count(12)->create();
+
+        $response = $this->get(route('product.index', ["page" => 3]));
+
+        $response->assertStatus(200);
+        $response->assertDontSee($products[0]->name);
+    }
+
+    public function test_index_with_page_not_defined(): void
+    {
+        $products = Product::factory()->count(12)->create();
+
+        $response = $this->get(route('product.index'));
+
+        $response->assertStatus(200);
+
+        for ($i = 0; $i < 9; $i++) {
+            $response->assertSee($products[$i]->name);
+        }
+    }
+
+    public function test_index_with_page_not_numeric(): void
+    {
+        $response = $this->get(route('product.index', ["page" => "not_numeric"]));
+
+        $response->assertStatus(400);
+    }
+
     public function test_index_with_name_filter(): void
     {
         //  C'est peut être un flaky test
