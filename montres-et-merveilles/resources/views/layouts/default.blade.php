@@ -12,21 +12,18 @@
     <link rel="stylesheet" href="{{ asset('css/boutiques.css') }}">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="{{ asset('js/navbar.js') }}" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="{{ asset('js/map.js') }}" defer></script>
 </head>
 
 <body>
     <header>
-        <nav id="navbar"
-            class="navbar flex items-center justify-center gap-16 font-['Comfortaa'] uppercase h-28">
+        <nav id="navbar" class="navbar flex items-center justify-center gap-16 font-['Comfortaa'] uppercase h-28">
 
             <div class="flex gap-5">
                 <a href="{{ route('product.index') }}">Nos montres</a>
@@ -52,9 +49,49 @@
         @yield('content')
     </main>
 
-    <footer class="bg-green-900">
-        <div class="flex items-center justify-center h-96">
-            <span>footer</span>
+    <footer class="flex flex-col bg-[#02291F] text-white h-[472px]">
+        <div class="flex basis-11/12 pt-12">
+            <div class="flex flex-col items-center gap-7 basis-1/3">
+                <a href="{{ route('accueil.index') }}" class="flex flex-col gap-1">
+                    <img src="{{ asset('images/logo-white.svg') }}" class="h-6" />
+                    <img src="{{ asset('images/swiss-made-white.svg') }}" class="h-6" />
+                </a>
+                <div class="flex flex-col items-center gap-4">
+                    <span class="font-['Catamaran']">Mathieu LE BRAS</span>
+                    <span class="font-['Catamaran']">Maximilien BAUSSON</span>
+                    <span class="font-['Catamaran']">Thomas HAY</span>
+                    <span class="font-['Catamaran']">Louis VILLATE</span>
+                    <span class="font-['Catamaran']">Nolan VANDE...</span>
+                </div>
+            </div>
+            <div class="flex basis-2/3 justify-around px-16">
+                <div class="flex flex-col gap-7">
+                    <span class="uppercase font-bold">Montres</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="{{ route('product.index') }}">Toutes les montres</a>
+                        <a href="{{ route('product.index') }}">Nos collections</a>
+                        <a href="{{ route('product.index') }}">Nouveautés</a>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-7">
+                    <span class="uppercase font-bold">Nous contacter</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="{{ route('boutiques.index') }}">Nos boutiques</a>
+                        <a href="{{ route('contact.index') }}">Contact</a>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-7">
+                    <span class="uppercase font-bold">Légal</span>
+                    <div class="flex flex-col gap-4">
+                        <a href="{{ route('accueil.index') }}">Conditions d'utilisations</a>
+                        <a href="{{ route('accueil.index') }}">Accessiblité</a>
+                        <a href="{{ route('accueil.index') }}">Politique de cookie</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center justify-center basis-1/12">
+            <span class="font-['Catamaran']">© 2024 Montres & Merveilles</span>
         </div>
     </footer>
 </body>

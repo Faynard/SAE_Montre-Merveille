@@ -23,6 +23,11 @@
     src: url("../fonts/GreatVibes.ttf");
 }
 
+@font-face {
+    font-family: 'Catamaran';
+    src: url("../fonts/Catamaran-Light.ttf");
+}
+
 * {
     font-family: 'Comfortaa';
 }
