@@ -46,7 +46,7 @@ if (window.location.pathname !== "/") {
             return;
         }
 
-        if (window.scrollY <= 0) {
+        if (!isTop && window.scrollY <= 0) {
             navbar.classList.remove("scrolledDown");
             navbar.classList.remove("scrolledUp");
 
@@ -60,20 +60,20 @@ if (window.location.pathname !== "/") {
         }
 
         if (!isGoUp && window.scrollY < previousScrollY) {
-        // La page est en train de remonter
-        isGoUp = true;
+            // La page est en train de remonter
+            isGoUp = true;
 
-        navbar.classList.remove("scrolledDown");
-        navbar.classList.add("scrolledUp");
+            navbar.classList.remove("scrolledDown");
+            navbar.classList.add("scrolledUp");
 
-        navbar.classList.remove("whiteText");
+            navbar.classList.remove("whiteText");
 
         } else if (isGoUp && window.scrollY > previousScrollY) {
-        // La page est en train de descendre
-        isGoUp = false;
+            // La page est en train de descendre
+            isGoUp = false;
 
-        navbar.classList.remove("scrolledUp");
-        navbar.classList.add("scrolledDown");
+            navbar.classList.remove("scrolledUp");
+            navbar.classList.add("scrolledDown");
         
         }
 
