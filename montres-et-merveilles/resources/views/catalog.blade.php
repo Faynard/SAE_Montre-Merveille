@@ -7,7 +7,7 @@
         <div class="relative">
             <input
                 class="border-b-2 border-gray-400 focus:border-gray-500 py-2 text-2xl w-full md:text-4xl font-thin focus:outline-none pl-4 transition"
-                name="name" placeholder="Rechercher des montres" />
+                name="name" placeholder="Rechercher des montres" value="{{ $name }}" />
             <button type="submit" class="absolute inset-y-0 right-0">
                 <img class="mb-6" src="{{ asset('images/search-icon.svg') }}" />
             </button>
@@ -20,22 +20,56 @@
             <span class="text-gray-400 font-thin">Filtrer par</span>
         </div>
         <div>
-            <span>Taille</span>
-            <div class="mt-8">
-                <form class="flex gap-8">
-                    <label>Size (mm.)</label>
-                    <input class="border-b-2 border-gray-400 font-thin text-lg focus:outline-none" type="number"
-                        name="size" default="0" min="0" max="60" />
-                </form>
-            </div>
+            <span id="filter-size-title" class="cursor-pointer transition hover:text-gray-500">Taille</span>
         </div>
         <div>
-            <span>Collection</span>
+            <span id="filter-movement-title" class="cursor-pointer transition hover:text-gray-500">Mouvement</span>
         </div>
         <div>
-            <span>Matériau</span>
+            <span id="filter-material-title" class="cursor-pointer transition hover:text-gray-500">Matériaux</span>
         </div>
     </div>
+
+    <form>
+        <div id="filter-size-container" class="mt-8 hidden flex gap-8">
+            <label class="font-medium">Taille maximale (mm.)</label>
+            <div class="flex gap-2">
+                <input class="border-b-2 border-gray-400 font-thin text-lg focus:outline-none" type="range" name="size"
+                    value="{{ $size }}" min="0" max="60" oninput="this.nextElementSibling.value = this.value" />
+                <output>{{ $size }}</ouput>
+            </div>
+            <button class="underline underline-offset-4">Rechercher</button>
+        </div>
+
+        <div id="filter-movement-container" class="mt-8 hidden flex gap-8">
+            <label class="font-medium">Type de mouvement</label>
+            <div class="flex gap-2">
+                <select name="movement">
+                    <option selected disabled>--- Mouvement ---</option>
+
+                    @foreach (App\Models\Product::$movements as $movement)
+                    <option value="{{ $movement }}">{{ $movement }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <button class="underline underline-offset-4">Rechercher</button>
+        </div>
+
+        <div id="filter-material-container" class="mt-8 hidden flex gap-8">
+            <label class="font-medium">Matériaux</label>
+            <div class="flex gap-2">
+                <select name="material">
+                    <option selected disabled>--- Matériaux ---</option>
+
+                    @foreach (App\Models\Product::$materials as $material)
+                    <option value="{{ $material }}">{{ $material }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <button class="underline underline-offset-4">Rechercher</button>
+        </div>
+    </form>
 
     <div class="flex items-center place-content-between">
         {{-- nb élément de la requête --}}
@@ -69,10 +103,25 @@
             </p>
 
             <span class="text-sm font-light text-gray-500">
-                42mm, Or gris 18 carats
+                {{ $product->movement }}, {{ $product->size }}mm, {{ $product->material }}
             </span>
         </article>
         @endforeach
     </div>
 </div>
+
+<script>
+    const filtersName = ["size", "movement", "material"];
+
+    filtersName.forEach(filter =>
+    {
+        const filterTitle = document.getElementById(`filter-${filter}-title`);
+        const filterContainer = document.getElementById(`filter-${filter}-container`);
+
+        filterTitle.addEventListener('click', function (e)
+        {
+            filterContainer.classList.toggle("hidden");
+        });
+    });
+</script>
 @endsection

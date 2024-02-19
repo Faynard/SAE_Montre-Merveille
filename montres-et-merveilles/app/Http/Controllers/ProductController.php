@@ -14,10 +14,12 @@ class ProductController extends Controller
         //  Au lieu de récupérer tout les produits et de les trier après,
         //      on ajoute des clauses WHERE directement dans le code SQL de la requête
         //      si les filtres sont appliqués
-
         //  products_filtered effectue ceci, et retourne les éléments filtrés
         $products_query = $this->products_filtered(DB::table("products"), [
             "name" => $request->input("name"),
+            "size" => $request->input("size"),
+            "movement" => $request->input("movement"),
+            "material" => $request->input("material"),
         ]);
 
         // nombre d'éléments par page
@@ -31,7 +33,7 @@ class ProductController extends Controller
             if (!is_numeric($page_input) || $page_input < 1) {
                 abort(400);
             }
-            
+
             $page_index = $request->input('page');
         }
 
@@ -41,12 +43,20 @@ class ProductController extends Controller
         $products_count = Product::count();
         $pages_count = (int) ceil($products_count / $page_length);
 
-        return view("catalog", ["page" => $page_index, "nb_pages" => $pages_count, "products_count" => $products_count, "products" => $products]);
+        return view("catalog", [
+            "page" => $page_index,
+            "nb_pages" => $pages_count,
+            "products_count" => $products_count,
+            "products" => $products,
+            "name" => $request->input("name"),
+            "size" => $request->input("size") ?? 0,
+            "movement" => $request->input("movement") ?? "",
+            "material" => $request->input("material") ?? "",
+        ]);
     }
 
     public function show(int $id)
     {
-
         $product = Product::find($id);
 
         if (!$product) {
@@ -59,7 +69,19 @@ class ProductController extends Controller
     private function products_filtered(Builder $products_query, array $filters)
     {
         if (array_key_exists('name', $filters) && $filters['name']) {
-            $products_query = $products_query->whereRaw("LOWER(name) LIKE '%' || LOWER(?) || '%'", $filters['name']);
+            $products_query = $products_query->where('name', 'LIKE', '%' . $filters['name'] . '%');
+        }
+
+        if (array_key_exists('size', $filters) && $filters['size']) {
+            $products_query = $products_query->where('size', '<=', $filters['size']);
+        }
+
+        if (array_key_exists('movement', $filters) && $filters['movement']) {
+            $products_query = $products_query->where('movement', $filters['movement']);
+        }
+
+        if (array_key_exists('material', $filters) && $filters['material']) {
+            $products_query = $products_query->where('material', $filters['material']);
         }
 
         return $products_query;
