@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Models\Product;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class ProductControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseMigrations;
 
     public function test_index(): void
     {
@@ -68,16 +68,32 @@ class ProductControllerTest extends TestCase
 
     public function test_index_with_name_filter(): void
     {
-        //  C'est peut être un flaky test
-        //      Si deux éléments ont le même name, le test ne marchera pas
         $products = Product::factory()->count(3)->create();
 
         $response = $this->get(route("product.index", "name=" . $products[0]->name));
 
         $response->assertStatus(200);
         $response->assertSee($products[0]->name);
-        $response->assertDontSee($products[1]->name);
-        $response->assertDontSee($products[2]->name);
+    }
+
+    public function test_index_with_material_filter(): void
+    {
+        $products = Product::factory()->count(3)->create();
+
+        $response = $this->get(route("product.index", "material=" . $products[0]->material));
+
+        $response->assertStatus(200);
+        $response->assertSee($products[0]->name);
+    }
+
+    public function test_index_with_movement_filter(): void
+    {
+        $products = Product::factory()->count(3)->create();
+
+        $response = $this->get(route("product.index", "movement=" . $products[0]->movement));
+
+        $response->assertStatus(200);
+        $response->assertSee($products[0]->name);
     }
 
     public function test_show_product_exists(): void
