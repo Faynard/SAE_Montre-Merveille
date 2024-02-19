@@ -54,4 +54,9 @@ Route::prefix('product')->name('product.')->controller(ProductController::class)
 
 Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function () {
     Route::post('/add', 'add')->name('add')->middleware("auth");
+    Route::post('/remove', 'remove')->name('remove')->middleware("auth");
+    Route::post('/delete', 'delete')->name('delete')->middleware("auth");
+    Route::get('/', 'index')->middleware('auth');
 });
+
+// Route::get('/user/profile', [CartController::class, 'index']);
