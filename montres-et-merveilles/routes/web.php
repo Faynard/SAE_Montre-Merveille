@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
-use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Route;
 
 
 /*
@@ -59,4 +60,7 @@ Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(f
     Route::get('/', 'index')->middleware('auth');
 });
 
-// Route::get('/user/profile', [CartController::class, 'index']);
+Route::prefix('order')->name('order.')->controller(OrderController::class)->group(function (){
+    Route::get('/payment','payment')->name('payment');
+    Route::post('/payment','doPayment')->name('payment');
+});
