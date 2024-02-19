@@ -60,9 +60,15 @@
                     <button type="submit">delete</button>
                 </form>
             </div>
+            <div>
+                @if($user->role == 'admin')
+                    <div>
+                        <a href="{{route('admin.index')}}">Page d'administration</a>
+                    </div>
+                @endif
+            </div>
         </div>
         <div class="cart bg-yellow-500">
-
         </div>
     </div>
 @endsection

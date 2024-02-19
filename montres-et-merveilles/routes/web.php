@@ -4,6 +4,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +28,9 @@ Route::get('/boutiques', function () {
     return view('boutiques');
 })->name('boutiques.index');
 
-Route::get('/admin', function () {
-    return view('admin');
-})->name('admin.index')->middleware('auth', 'authorized');
+Route::prefix('admin')->name('admin.')->controller(AdminController::class)->group(function () {
+    Route::get('/', 'index')->name('index')->middleware('auth', 'authorized');
+});
 
 Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
