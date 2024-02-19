@@ -37,7 +37,22 @@
         </div>
     </div>
 
-    <p class="my-8 text-gray-400 font-thin">{{ count($products) }} montres</p>
+    <div class="flex items-center place-content-between">
+        {{-- nb élément de la requête --}}
+        <p class="my-8 text-gray-400 font-thin">{{ $products_count }} montres</p>
+
+        {{-- pagination --}}
+        <div class="flex items-center gap-1">
+            @for ($i = 1; $i <= $nb_pages; $i++)
+                @if ($i == $page) 
+                    {{-- index de la page actuel --}}
+                    <span class="text-lg font-bold">{{ $i }}</span>
+                @else
+                    <a href="{{ route('product.index', ['page' => $i]) }}" class="text-base font-thin">{{ $i }}</a>
+                @endif
+            @endfor
+        </div>
+    </div>
 
     <div class="grid grid-cols-3 gap-4">
         @foreach ($products as $product)
