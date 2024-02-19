@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('quantity_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Cart::class)->nullable()->constrained();
-            $table->foreignIdFor(\App\Models\Order::class)->nullable()->constrained();
+            $table->foreignIdFor(\App\Models\Cart::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Order::class)->nullable()->constrained()->cascadeOnDelete();
             $table->integer('quantity');
-            $table->foreignIdFor(\App\Models\Product::class)->constrained();
+            $table->foreignIdFor(\App\Models\Product::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
