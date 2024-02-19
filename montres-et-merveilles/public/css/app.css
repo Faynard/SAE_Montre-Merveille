@@ -9,8 +9,18 @@
 }
 
 @font-face {
+    font-family: 'Cinzel Decorative';
+    src: url("../fonts/CinzelDecorative.ttf");
+}
+
+@font-face {
     font-family: 'NotoSerif';
     src: url("../fonts/NotoSerif.ttf");
+}
+
+@font-face {
+    font-family: 'Great Vibes';
+    src: url("../fonts/GreatVibes.ttf");
 }
 
 * {
@@ -50,4 +60,20 @@ header.notAccueill {
 
 #navbar.whiteText {
     color: white;
+}
+
+.font-cinzel {
+    font-family: 'Cinzel';
+}
+
+.font-cinzel-decorative {
+    font-family: 'Cinzel Decorative';
+}
+
+.font-notoserif {
+    font-family: 'NotoSerif';
+}
+
+.font-great-vibes {
+    font-family: 'Great Vibes';
 }

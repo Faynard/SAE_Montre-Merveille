@@ -61,8 +61,9 @@
                     class="w-40 drop-shadow-lg transition ease-in group-hover:scale-105 duration-500"
                     src="{{ asset('images/montre_1.png') }}" /></a>
 
-            <p class="flex flex-col items-center">
-                <a href="{{ route('product.show', ['product' => $product->id]) }}" class="text-lg font-bold">{{
+            <p class="flex flex-col items-center gap-2">
+                <a href="{{ route('product.show', ['product' => $product->id]) }}"
+                    class="text-lg text-balance text-center font-bold">{{
                     $product->name }}</a>
                 <span class="font-thin">Ultra-Complication Universelle</span>
             </p>

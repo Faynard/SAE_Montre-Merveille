@@ -58,8 +58,8 @@ class ProductController extends Controller
 
     private function products_filtered(Builder $products_query, array $filters)
     {
-        if (array_key_exists('name', $filters)) {
-            $products_query = $products_query->where('name', 'LIKE', '%' . $filters['name'] . '%');
+        if (array_key_exists('name', $filters) && $filters['name']) {
+            $products_query = $products_query->whereRaw("LOWER(name) LIKE '%' || LOWER(?) || '%'", $filters['name']);
         }
 
         return $products_query;

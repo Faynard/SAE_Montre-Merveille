@@ -2,18 +2,36 @@
 
 @section('content')
 
-<div>
-    <h1>Product: {{ $product->name }}</h1>
-    <p>Product description: {{ $product->description }}</p>
-    <p>Price: {{ $product->price }}€</p>
+<div class="px-12 md:px-26 lg:px-44">
+    <div class="grid grid-cols-3">
+        <p class="flex flex-col gap-4 mt-20">
+            <span class="text-4xl font-cinzel">{{ $product->name }}</span>
+            <span class="text-gray-600 font-light">EUR {{ number_format($product->price) }}</span>
+        </p>
 
-    <form action="{{ route('cart.add') }}" method="POST">
+        <img src="{{ asset('images/montre_2.png') }}" />
+    </div>
+
+    <form class="my-8 flex justify-center" action="{{ route('cart.add') }}" method="POST">
         @csrf
 
-        <input name="product_id" value="{{ $product->id }}" />
+        <input name="product_id" value="{{ $product->id }}" hidden />
 
-        <button>Add to cart</button>
+        <button class="bg-black border border-transparent px-10 py-4 text-white font-cinzel-decorative 
+            hover:bg-white hover:text-black hover:border-black hover:font-black transition-all ease-out">Ajouter
+            au panier</button>
     </form>
-</div>
 
+    <p class="my-12 font-great-vibes text-4xl font-medium text-center">
+        “Montres & Merveilles ouvre la voie vers l'avenir de l'horlogerie”
+    </p>
+
+    <div class="grid grid-cols-2 gap-8">
+        <img class="mb-10" src="{{ asset('images/montre_3.png') }}" />
+
+        <p class="font-medium text-balance">
+            {{ $product->description }}
+        </p>
+    </div>
+</div>
 @endsection
