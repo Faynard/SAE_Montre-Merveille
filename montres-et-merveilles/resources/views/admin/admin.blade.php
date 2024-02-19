@@ -21,6 +21,7 @@
         @endforeach
     </tbody>
 </table>
-
-
+<div>
+    <a href="{{ route('admin.product.create')}}">Créer un produit</a>
+</div>
 @endsection

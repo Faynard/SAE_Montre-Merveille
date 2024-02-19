@@ -31,6 +31,12 @@ Route::get('/boutiques', function () {
 
 Route::prefix('admin')->name('admin.')->controller(AdminController::class)->group(function () {
     Route::get('/', 'index')->name('index')->middleware('auth', 'authorized');
+
+    Route::prefix('/product')->name('product.')->group(function () {
+        Route::get('/create', 'createProduct')->name('create')->middleware('auth', 'authorized');
+        Route::get('/edit/{id}', 'editProduct')->name('edit')->middleware('auth', 'authorized');
+        Route::post('/save', 'doSaveProduct')->name('save')->middleware('auth', 'authorized');
+    });
 });
 
 Route::prefix('user')->name('user.')->controller(UserController::class)->group(function () {
