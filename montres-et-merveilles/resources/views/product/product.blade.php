@@ -17,9 +17,7 @@
 
         <input name="product_id" value="{{ $product->id }}" hidden />
 
-        <button class="bg-black border border-transparent px-10 py-4 text-white font-cinzel-decorative 
-            hover:bg-white hover:text-black hover:border-black hover:font-black transition-all ease-out">Ajouter
-            au panier</button>
+        <x-forms.button text="Ajouter au panier" />
     </form>
     <div>
         {{-- Si l'utilisateur est authentifié et est admin --}}

@@ -28,6 +28,11 @@
     src: url("../fonts/Catamaran-Light.ttf");
 }
 
+@font-face {
+    font-family: 'Catamaran Semi Bold';
+    src: url("../fonts/Catamaran-SemiBold.ttf");
+}
+
 * {
     font-family: 'Comfortaa';
 }
