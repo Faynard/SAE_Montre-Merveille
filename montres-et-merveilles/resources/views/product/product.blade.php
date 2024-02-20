@@ -29,5 +29,18 @@
         </div>
         @endif
     </div>
+
+    <p class="my-12 font-great-vibes text-4xl font-medium text-center">
+        “Montres & Merveilles ouvre la voie vers l'avenir de l'horlogerie”
+    </p>
+
+    <div class="grid grid-cols-2 gap-8">
+        <img class="mb-10" src="{{ asset('images/montre_3.png') }}" />
+
+        <p class="font-medium text-balance">
+            {{ $product->description }}
+        </p>
+    </div>
+
 </div>
 @endsection
