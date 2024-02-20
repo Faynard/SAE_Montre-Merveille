@@ -32,6 +32,10 @@ Route::get('/boutiques', function () {
 Route::prefix('admin')->name('admin.')->controller(AdminController::class)->group(function () {
     Route::get('/', 'index')->name('index')->middleware('auth', 'authorized');
 
+    Route::prefix("/order")->name("order.")->group(function () {
+        Route::delete("/{id}", "deleteOrder")->name("delete")->middleware('auth', 'authorized');
+    });
+
     Route::prefix('/product')->name('product.')->group(function () {
         Route::get('/create', 'createProduct')->name('create')->middleware('auth', 'authorized');
         Route::get('/edit/{id}', 'editProduct')->name('edit')->middleware('auth', 'authorized');
@@ -57,6 +61,7 @@ Route::prefix('user')->name('user.')->controller(UserController::class)->group(f
 Route::prefix('product')->name('product.')->controller(ProductController::class)->group(function () {
     Route::get('/', 'index')->name('index');
     Route::get('/{product}', 'show')->name('show');
+    Route::delete("/{product}", "delete")->name('delete');
 });
 
 Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function () {
@@ -65,7 +70,7 @@ Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(f
     Route::post('/delete', 'delete')->name('delete')->middleware("auth");
 });
 
-Route::prefix('order')->name('order.')->controller(OrderController::class)->group(function (){
-    Route::get('/payment','payment')->name('payment');
-    Route::post('/payment','doPayment')->name('payment');
+Route::prefix('order')->name('order.')->controller(OrderController::class)->group(function () {
+    Route::get('/payment', 'payment')->name('payment');
+    Route::post('/payment', 'doPayment')->name('payment');
 });

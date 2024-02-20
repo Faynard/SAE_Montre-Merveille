@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -110,6 +111,33 @@ class ProductControllerTest extends TestCase
     {
         $response = $this->get(route('product.show', ["product" => -1]));
 
+        $response->assertStatus(404);
+    }
+
+    public function test_delete(): void
+    {
+        $user = User::factory()->set('role', 'admin')->create();
+        $product = Product::factory()->create();
+
+        $this->assertDatabaseCount('products', 1);
+
+        $response = $this->followingRedirects()->delete(route("product.delete", ["product" => $product->id]));
+
+        $this->assertDatabaseCount('products', 0);
+        $response->assertStatus(200);
+        $response->assertViewIs("product.catalog");
+    }
+
+    public function test_delete_not_found(): void
+    {
+        $user = User::factory()->set('role', 'admin')->create();
+        $product = Product::factory()->create();
+
+        $this->assertDatabaseCount('products', 1);
+
+        $response = $this->delete(route("product.delete", ["product" => -234]));
+
+        $this->assertDatabaseCount('products', 1);
         $response->assertStatus(404);
     }
 }

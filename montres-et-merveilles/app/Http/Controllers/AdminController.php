@@ -17,6 +17,19 @@ class AdminController
         return view("admin/admin", ["orders" => $orders]);
     }
 
+    public function deleteOrder(int $id)
+    {
+        $order = Order::find($id);
+
+        if (!$order) {
+            abort(404);
+        }
+
+        $order->delete();
+
+        return redirect()->route("admin.index");
+    }
+
     public function createProduct()
     {
         //  Retourne le formulaire du produit avec des valeurs par défaut vides
