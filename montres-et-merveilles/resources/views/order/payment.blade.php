@@ -4,7 +4,7 @@
 
 <div class="flex justify-between">
     <div class="w-1/2">
-        <form action="{{ route('cart.') }}" method="GET">
+        <form action="{{ route('order.payment') }}" method="GET">
             <button type="submit">Retour au panier</button>
         </form>
 
@@ -57,7 +57,6 @@
             <button type="submit">Payer</button>
         </form>
     </div>
-
 
     <div class="w-1/2 pl-8">
         <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">

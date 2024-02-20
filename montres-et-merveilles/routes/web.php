@@ -63,7 +63,6 @@ Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(f
     Route::post('/add', 'add')->name('add')->middleware("auth");
     Route::post('/remove', 'remove')->name('remove')->middleware("auth");
     Route::post('/delete', 'delete')->name('delete')->middleware("auth");
-    Route::get('/', 'index')->middleware('auth');
 });
 
 Route::prefix('order')->name('order.')->controller(OrderController::class)->group(function (){

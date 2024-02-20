@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginRequest;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -78,7 +79,11 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view("user/profile", ['user' => $user]);
+        $user = User::find($user->id);
+        $cart = $user->cart();
+        $cart->save();
+
+        return view("user/profile", ['user' => $user, 'quantityItems' => $cart->quantityItems]);
     }
 
     public function update(LoginRequest $request)

@@ -16,6 +16,12 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function cart(): Cart {
+        return $this->hasOne(Cart::class)->firstOrCreate([
+            'user_id' => $this->id
+        ]);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

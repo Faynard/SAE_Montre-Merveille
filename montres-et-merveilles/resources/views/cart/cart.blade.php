@@ -1,6 +1,3 @@
-@extends('layouts.default')
-
-@section('content')
 <div class="flex justify-center mt-8">
     <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
         <thead class="bg-gray-800 text-white">
@@ -43,4 +40,3 @@
         </tbody>
     </table>
 </div>
-@endsection

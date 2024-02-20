@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\QuantityItem;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,10 @@ class OrderController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
 
-            $cart = $this->getUserCart($user->id);
+            $user = User::find($user->id);
+            $cart = $user->cart();
+            $cart->save();
+
             return view('order.payment', ['quantityItems' => $cart->quantityItems, 'totalPrice' => $this->calculateTotalPrice($cart->quantityItems)]);
         } else {
             return redirect()->intended(route("accueil.index"));
@@ -35,7 +39,9 @@ class OrderController extends Controller
 
         // Je récupère l'id de l'utilisateur ainsi que l'id de son panier
         $user_id = $user->id;
-        $cart = $this->getUserCart($user_id);
+        $user = User::find($user_id);
+        $cart = $user->cart();
+        $cart->save();
 
         // Création d'une nouvelle commande
         $newOrder = Order::create([
@@ -44,7 +50,7 @@ class OrderController extends Controller
         ]);
 
         // Récupérer l'id du panier de l'utilisateur
-        $idCart = $this->getUserCart($user_id)->id;
+        $idCart = $cart->id;
 
 
         // Récupérer tous les QuantityItems associés au panier de l'utilisateur donnée
@@ -61,20 +67,6 @@ class OrderController extends Controller
         $cart->delete();
 
         return redirect()->intended(route("accueil.index"));
-    }
-
-    private function getUserCart(int $user_id): Cart
-    {
-        $cart = Cart::where('user_id', $user_id)->first();
-
-        if (!$cart) {
-            $cart = new Cart();
-            $cart->user_id = $user_id;
-
-            $cart->save();
-        }
-
-        return $cart;
     }
 
     private function calculateTotalPrice($quantityItems)
