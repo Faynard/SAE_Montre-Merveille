@@ -13,17 +13,22 @@ class OrderController extends Controller
 {
     public function payment()
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-
-            $user = User::find($user->id);
-            $cart = $user->cart();
-            $cart->save();
-
-            return view('order.payment', ['quantityItems' => $cart->quantityItems, 'totalPrice' => $this->calculateTotalPrice($cart->quantityItems)]);
-        } else {
+        if (!Auth::check()) {
             return redirect()->intended(route("accueil.index"));
         }
+
+        $user = Auth::user();
+    
+        $user = User::find($user->id);
+        $cart = $user->cart();
+
+        if ($cart->quantityItems->count() == 0) {
+            return redirect()->intended(route("accueil.index"));
+        }
+
+        $cart->save();
+    
+        return view('order.payment', ['quantityItems' => $cart->quantityItems, 'totalPrice' => $this->calculateTotalPrice($cart->quantityItems)]);
     }
 
     public function doPayment(Request $request)
