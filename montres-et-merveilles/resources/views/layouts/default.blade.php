@@ -60,8 +60,8 @@
                     <span class="font-['Catamaran']">Mathieu LE BRAS</span>
                     <span class="font-['Catamaran']">Maximilien BAUSSON</span>
                     <span class="font-['Catamaran']">Thomas HAY</span>
-                    <span class="font-['Catamaran']">Louis VILLATE</span>
-                    <span class="font-['Catamaran']">Nolan VANDE...</span>
+                    <span class="font-['Catamaran']">Louis VILLATTE</span>
+                    <span class="font-['Catamaran']">Nolan VANDEMEULEBROUCKE</span>
                 </div>
             </div>
             <div class="flex basis-2/3 justify-around px-16">

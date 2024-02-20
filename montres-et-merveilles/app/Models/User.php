@@ -12,11 +12,19 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function orders(){
+    //  Permet d'accéder aux commandes d'un utilisateur
+    public function orders()
+    {
         return $this->hasMany(Order::class);
     }
 
-    public function cart(): Cart {
+    /**
+     * si l'utilisateur n'a pas de panier, on lui en crée un
+     * 
+     * @return Cart
+     */
+    public function cart(): Cart
+    {
         return $this->hasOne(Cart::class)->firstOrCreate([
             'user_id' => $this->id
         ]);

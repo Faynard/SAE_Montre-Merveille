@@ -9,6 +9,7 @@ class Cart extends Model
 {
     use HasFactory;
 
+    //  Permet d'accéder aux QuantityItems lié à un panier
     public function quantityItems()
     {
         return $this->hasMany(QuantityItem::class);

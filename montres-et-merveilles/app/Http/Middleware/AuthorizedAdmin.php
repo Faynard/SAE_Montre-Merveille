@@ -10,6 +10,7 @@ class AuthorizedAdmin
 {
     /**
      * Handle an incoming request.
+     * si l'utilisateur n'est pas admin, on le redirige vers la page d'accueil
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */

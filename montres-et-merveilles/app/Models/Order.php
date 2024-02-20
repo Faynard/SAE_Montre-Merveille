@@ -9,7 +9,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function user(){
+    //  Permet d'accéder à l'utilisateur lié à une commande
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 

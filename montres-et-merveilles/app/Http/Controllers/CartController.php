@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    /* ajout d'un article au panier de l'utilisateur,
+     * celui-ci doit être connecté.
+     * permet aussi l'incrémentation de la quantité d'un article
+     * dans le panier de l'utilisateur sur la page associée
+     */
     public function add(Request $request)
     {
         $parameters = $request->validate([
@@ -29,6 +34,11 @@ class CartController extends Controller
         return back();
     }
 
+    /* suppression d'un article au panier de l'utilisateur,
+     * celui-ci devant être connecté.
+     * Permet la décrémentation de la quantité d'un article.
+     * Si la quantité est nulle, on supprime l'article du panier
+     */
     public function remove(Request $request)
     {
         $parameters = $request->validate([
@@ -55,6 +65,10 @@ class CartController extends Controller
         return back();
     }
 
+    /* suppression d'un article, quelque soit sa quantité, du panier de l'utilisateur,
+     * celui-ci devant être connecté.
+     * Permet la suppression de la totalité d'un article
+     */
     public function delete(Request $request)
     {
         $parameters = $request->validate([
@@ -72,6 +86,9 @@ class CartController extends Controller
         return back();
     }
 
+    /* récupération de la quantité d'un article dans le panier de l'utilisateur
+     * celui-ci devant être connecté
+     */
     private function getQuantityItem(int $cart_id, int $product_id): QuantityItem
     {
         $quantityItem = QuantityItem::where('cart_id', $cart_id)->where('product_id', $product_id)->first();

@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\New_;
 
 class ProductController extends Controller
 {
@@ -58,6 +55,8 @@ class ProductController extends Controller
         ]);
     }
 
+    //  Récupère le produit via l'ID renseigné en paramètre afin de le renseigner dans la vue product
+    //      S'il n'existe pas, on renvoie un erreur 404
     public function show(int $id)
     {
         $product = Product::find($id);
@@ -69,6 +68,8 @@ class ProductController extends Controller
         return view('product.product', ['product' => $product]);
     }
 
+    //  Récupère le produit via l'ID renseigné en paramètre afin de le supprimer
+    //      S'il n'existe pas, on renvoie un erreur 404
     public function delete(int $product)
     {
         $product = Product::find($product);
@@ -82,6 +83,7 @@ class ProductController extends Controller
         return redirect()->route("product.index");
     }
 
+    //  Modifie la requête SQL permettant de récupérer tous les produits, en ajouter une clause WHERE par filtre renseigné
     private function products_filtered(Builder $products_query, array $filters)
     {
         if (array_key_exists('name', $filters) && $filters['name']) {
