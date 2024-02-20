@@ -22,4 +22,7 @@
     @enderror
 </form>
 
+<form action="{{ route("user.register") }}" method="get">
+<button type="submit">Créer un compte</button>
+</form>
 @endsection
