@@ -11,6 +11,7 @@ class OrderController extends Controller
 {
     public function payment()
     {
+        // Vérifie la connexion de l'utilisateur, s'il est connecté, on retourne la vue payment avec comme paramètres le prix total du panier et les produits du panier
         if (!Auth::check()) {
             return redirect()->intended(route("accueil.index"));
         }
@@ -23,13 +24,13 @@ class OrderController extends Controller
             return redirect()->intended(route("accueil.index"));
         }
 
-        $cart->save();
-
         return view('order.payment', ['quantityItems' => $cart->quantityItems, 'totalPrice' => $this->calculateTotalPrice($cart->quantityItems)]);
     }
 
+    //  Effectue la validation des données bancaire, et si possible, créer une commande à partir du panier
     public function doPayment(Request $request)
     {
+        // Vérifie l'intégrité des données entrées dans le formulaire
         $postReceived = $request->validate([
             "card_name" => ["required"],
             "card_number" => ["required"],
@@ -65,10 +66,12 @@ class OrderController extends Controller
         return redirect()->intended(route("accueil.index"));
     }
 
+    // Méthode qui retourne le prix total des produits du panier
     private function calculateTotalPrice($quantityItems)
     {
         $totalPrice = 0;
 
+        // Boucle qui aditionne le prix * la quantitié de tous les produits du panier
         foreach ($quantityItems as $quantityItem) {
             $totalPrice += $quantityItem->product->price * $quantityItem->quantity;
         }

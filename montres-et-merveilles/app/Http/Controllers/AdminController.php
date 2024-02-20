@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 
 class AdminController
 {
-    /*Cette focntion permet de récupérer toute les commandes. Comme findAllOrder() */
+    // Cette fonction permet de récupérer toutes les commandes et de les afficher dans la vue.
     public function index()
     {
         $orders = Order::all();
@@ -17,6 +17,7 @@ class AdminController
         return view("admin/admin", ["orders" => $orders]);
     }
 
+    // Cette fonction permet de supprimer une commande en cours.
     public function deleteOrder(int $id)
     {
         $order = Order::find($id);
@@ -42,6 +43,10 @@ class AdminController
         return view("admin/productForm", ["product" => Product::find($id)]);
     }
 
+    /*
+     * Fonction appelée en POST qui permet de récupérer les éléments des formulaires pour modifier la
+     * base de données en conséquence.
+     */
     public function doSaveProduct(Request $request)
     {
         //  Validation des données en entrée
