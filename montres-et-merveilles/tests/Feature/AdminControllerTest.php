@@ -109,6 +109,6 @@ class AdminControllerTest extends TestCase
         $response = $this->followingRedirects()->post(route("admin.product.save"), $data);
 
         $this->assertDatabaseCount("products", 1);
-        $response->assertViewIs("product");
+        $response->assertViewIs("product.product");
     }
 }

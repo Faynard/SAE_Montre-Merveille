@@ -14,7 +14,8 @@ class UserController extends Controller
         if (Auth::check()) {
             return redirect()->route('accueil.index');
         }
-        return view("register");
+
+        return view("user/register");
     }
 
     public function doRegister(LoginRequest $request)
@@ -45,7 +46,7 @@ class UserController extends Controller
         if (Auth::check()) {
             return redirect()->route('accueil.index');
         }
-        return view('login');
+        return view('user/login');
     }
 
     public function doLogin(LoginRequest $request)
@@ -77,7 +78,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return view('profile', ['user' => $user]);
+        return view("user/profile", ['user' => $user]);
     }
 
     public function update(LoginRequest $request)

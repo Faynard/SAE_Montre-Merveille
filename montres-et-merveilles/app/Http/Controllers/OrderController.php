@@ -12,12 +12,12 @@ class OrderController extends Controller
 {
     public function payment()
     {
-        if (Auth::check()){
+        if (Auth::check()) {
             $user = Auth::user();
 
             $cart = $this->getUserCart($user->id);
-            return view('payment',['quantityItems' => $cart->quantityItems, 'totalPrice' => $this->calculateTotalPrice($cart->quantityItems)]);
-        }else{
+            return view('order.payment', ['quantityItems' => $cart->quantityItems, 'totalPrice' => $this->calculateTotalPrice($cart->quantityItems)]);
+        } else {
             return redirect()->intended(route("accueil.index"));
         }
     }
@@ -42,7 +42,7 @@ class OrderController extends Controller
             "user_id" => $user_id,
             "price" => $this->calculateTotalPrice($cart->quantityItems)
         ]);
-        
+
         // Récupérer l'id du panier de l'utilisateur
         $idCart = $this->getUserCart($user_id)->id;
 

@@ -17,7 +17,7 @@ class UserControllerTest extends TestCase
         $response = $this->get(route("user.register"));
 
         $response->assertStatus(200);
-        $response->assertViewIs("register");
+        $response->assertViewIs("user.register");
     }
 
     public function test_do_register_success(): void
@@ -100,7 +100,7 @@ class UserControllerTest extends TestCase
         $response = $this->get(route("user.login"));
 
         $response->assertStatus(200);
-        $response->assertViewIs("login");
+        $response->assertViewIs("user.login");
     }
 
     public function test_do_login_invalid_data(): void
@@ -191,7 +191,7 @@ class UserControllerTest extends TestCase
         $user = User::find($user["id"]);
 
         $response->assertStatus(200);
-        $response->assertViewIs("profile");
+        $response->assertViewIs("user.profile");
         $response->assertSee($user->firstname);
         $this->assertEquals("newLastName123", $user->lastname);
     }

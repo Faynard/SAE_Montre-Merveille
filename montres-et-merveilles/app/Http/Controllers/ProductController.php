@@ -46,7 +46,7 @@ class ProductController extends Controller
         $products_count = Product::count();
         $pages_count = (int) ceil($products_count / $page_length);
 
-        return view("catalog", [
+        return view("product.catalog", [
             "page" => $page_index,
             "nb_pages" => $pages_count,
             "products_count" => $products_count,
@@ -66,7 +66,7 @@ class ProductController extends Controller
             abort(404);
         }
 
-        return view('product', ['product' => $product]);
+        return view('product.product', ['product' => $product]);
     }
 
     private function products_filtered(Builder $products_query, array $filters)
