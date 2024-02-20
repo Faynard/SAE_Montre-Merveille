@@ -29,17 +29,17 @@ Route::get('/boutiques', function () {
     return view('boutiques');
 })->name('boutiques.index');
 
-Route::prefix('admin')->name('admin.')->controller(AdminController::class)->group(function () {
-    Route::get('/', 'index')->name('index')->middleware('auth', 'authorized');
+Route::prefix('admin')->name('admin.')->controller(AdminController::class)->middleware("auth", "authorized")->group(function () {
+    Route::get('/', 'index')->name('index');
 
     Route::prefix("/order")->name("order.")->group(function () {
-        Route::delete("/{id}", "deleteOrder")->name("delete")->middleware('auth', 'authorized');
+        Route::delete("/{id}", "deleteOrder")->name("delete");
     });
 
     Route::prefix('/product')->name('product.')->group(function () {
-        Route::get('/create', 'createProduct')->name('create')->middleware('auth', 'authorized');
-        Route::get('/edit/{id}', 'editProduct')->name('edit')->middleware('auth', 'authorized');
-        Route::post('/save', 'doSaveProduct')->name('save')->middleware('auth', 'authorized');
+        Route::get('/create', 'createProduct')->name('create');
+        Route::get('/edit/{id}', 'editProduct')->name('edit');
+        Route::post('/save', 'doSaveProduct')->name('save');
     });
 });
 
@@ -64,13 +64,13 @@ Route::prefix('product')->name('product.')->controller(ProductController::class)
     Route::delete("/{product}", "delete")->name('delete');
 });
 
-Route::prefix('cart')->name('cart.')->controller(CartController::class)->group(function () {
-    Route::post('/add', 'add')->name('add')->middleware("auth");
-    Route::post('/remove', 'remove')->name('remove')->middleware("auth");
-    Route::post('/delete', 'delete')->name('delete')->middleware("auth");
+Route::prefix('cart')->name('cart.')->controller(CartController::class)->middleware("auth")->group(function () {
+    Route::post('/add', 'add')->name('add');
+    Route::post('/remove', 'remove')->name('remove');
+    Route::post('/delete', 'delete')->name('delete');
 });
 
-Route::prefix('order')->name('order.')->controller(OrderController::class)->group(function () {
+Route::prefix('order')->name('order.')->controller(OrderController::class)->middleware("auth")->group(function () {
     Route::get('/payment', 'payment')->name('payment');
     Route::post('/payment', 'doPayment')->name('payment');
 });

@@ -77,24 +77,20 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        $user = User::find($user->id);
         $cart = $user->cart();
-        $cart->save();
 
         return view("user/profile", ['user' => $user, 'quantityItems' => $cart->quantityItems]);
     }
 
     public function update(LoginRequest $request)
     {
-        $user = Auth::user();
-
         $credentials = $request->validate([
             "firstname" => ["required"],
             "lastname" => ["required"],
             "password" => ["required", "confirmed"],
         ]);
 
-        $user = User::find($user->id);
+        $user = Auth::user();
 
         $user->update([
             "firstname" => $credentials["firstname"],
