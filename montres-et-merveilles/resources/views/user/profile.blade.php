@@ -1,8 +1,8 @@
 @extends('layouts.default')
 
 @section('content')
-    <div class="grid grid-cols-2">
-        <div class="profile bg-red-500">
+    <div class="flex justify-between">
+        <div class="w-1/2">
             <form action="{{ route('user.profile') }}" method="post">
                 @csrf
                 @method('PUT')
@@ -68,7 +68,16 @@
                 @endif
             </div>
         </div>
-        <div class="cart bg-yellow-500">
+
+        <div>
+            @include('cart.cart', ['quantityItems' => $quantityItems])
+            @if ($quantityItems->isEmpty())
+                <div>
+                    <p>Votre panier est vide</p>
+                </div>
+            @else
+                <a href="{{ route('order.payment') }}">Valider le panier</a>
+            @endif
         </div>
     </div>
 @endsection

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
-use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Psy\Readline\Hoa\Console;
 
 class AdminController
 {
