@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
 use App\Models\Order;
 use App\Models\QuantityItem;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,8 +16,7 @@ class OrderController extends Controller
         }
 
         $user = Auth::user();
-    
-        $user = User::find($user->id);
+
         $cart = $user->cart();
 
         if ($cart->quantityItems->count() == 0) {
@@ -27,7 +24,7 @@ class OrderController extends Controller
         }
 
         $cart->save();
-    
+
         return view('order.payment', ['quantityItems' => $cart->quantityItems, 'totalPrice' => $this->calculateTotalPrice($cart->quantityItems)]);
     }
 
@@ -40,31 +37,25 @@ class OrderController extends Controller
             "cvv" => ["required"],
         ]);
 
+        // Je récupère l'utilisateur ainsi que l'id de son panier
         $user = Auth::user();
 
-        // Je récupère l'id de l'utilisateur ainsi que l'id de son panier
-        $user_id = $user->id;
-        $user = User::find($user_id);
         $cart = $user->cart();
-        $cart->save();
 
         // Création d'une nouvelle commande
         $newOrder = Order::create([
-            "user_id" => $user_id,
+            "user_id" => $user->id,
             "price" => $this->calculateTotalPrice($cart->quantityItems)
         ]);
 
-        // Récupérer l'id du panier de l'utilisateur
-        $idCart = $cart->id;
-
-
         // Récupérer tous les QuantityItems associés au panier de l'utilisateur donnée
-        $quantityItems = QuantityItem::where('cart_id', $idCart)->get();
+        $quantityItems = QuantityItem::where('cart_id', $cart->id)->get();
 
         // Mettre à jour l'order_id pour tous les QuantityItems, on délie du panier et crée une liaison avec la nouvelle commande.
         foreach ($quantityItems as $quantityItem) {
             $quantityItem->order_id = $newOrder->id;
             $quantityItem->cart_id = null;
+
             $quantityItem->save();
         }
 

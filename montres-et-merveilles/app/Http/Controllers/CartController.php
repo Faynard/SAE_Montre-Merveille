@@ -19,10 +19,7 @@ class CartController extends Controller
         $product = Product::find($parameters["product_id"]);
 
         $user = Auth::user();
-
-        $user = User::find($user->id);
         $cart = $user->cart();
-        $cart->save();
 
         $quantityItem = $this->getQuantityItem($cart->id, $product->id);
         $quantityItem->quantity++;
@@ -41,10 +38,7 @@ class CartController extends Controller
         $product = Product::find($parameters["product_id"]);
 
         $user = Auth::user();
-
-        $user = User::find($user->id);
         $cart = $user->cart();
-        $cart->save();
 
         $quantityItem = $this->getQuantityItem($cart->id, $product->id);
         $quantityItem->quantity--;
@@ -52,6 +46,7 @@ class CartController extends Controller
         // Si la quantité est nulle, on supprime l'item
         if ($quantityItem->quantity <= 0) {
             $quantityItem->delete();
+
             return back();
         }
 
@@ -69,10 +64,7 @@ class CartController extends Controller
         $product = Product::find($parameters["product_id"]);
 
         $user = Auth::user();
-
-        $user = User::find($user->id);
         $cart = $user->cart();
-        $cart->save();
 
         $quantityItem = $this->getQuantityItem($cart->id, $product->id);
         $quantityItem->delete();
