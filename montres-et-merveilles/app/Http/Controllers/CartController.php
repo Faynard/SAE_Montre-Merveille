@@ -18,7 +18,7 @@ class CartController extends Controller
         // récupération de l'id du user
         $cart = $this->getUserCart($user->id);
 
-        return view('cart', ['quantityItems' => $cart->quantityItems]);
+        return view('cart.cart', ['quantityItems' => $cart->quantityItems]);
     }
 
     public function add(Request $request)
