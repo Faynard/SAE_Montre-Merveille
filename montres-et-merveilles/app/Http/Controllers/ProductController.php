@@ -69,6 +69,19 @@ class ProductController extends Controller
         return view('product.product', ['product' => $product]);
     }
 
+    public function delete(int $product)
+    {
+        $product = Product::find($product);
+
+        if (!$product) {
+            abort(404);
+        }
+
+        $product->delete();
+
+        return redirect()->route("product.index");
+    }
+
     private function products_filtered(Builder $products_query, array $filters)
     {
         if (array_key_exists('name', $filters) && $filters['name']) {

@@ -26,6 +26,13 @@
         @if(Auth::user()?->role == 'admin')
         <div>
             <a href="{{route('admin.product.edit',$product->id)}}">Modifier le produit</a>
+
+            <form action="{{ route('product.delete', ['product'=> $product->id]) }}" method="POST">
+                @csrf
+                @method("DELETE")
+
+                <button>Supprimer le produit</button>
+            </form>
         </div>
         @endif
     </div>

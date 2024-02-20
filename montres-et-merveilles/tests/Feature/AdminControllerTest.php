@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -110,5 +111,17 @@ class AdminControllerTest extends TestCase
 
         $this->assertDatabaseCount("products", 1);
         $response->assertViewIs("product.product");
+    }
+
+    public function test_order_delete_not_found(): void
+    {
+        $user = User::factory()->set('role', 'admin')->create();
+        $order = Order::factory()->set('user_id', $user->id)->create();
+
+        $this->assertDatabaseCount('orders', 1);
+
+        $response = $this->followingRedirects()->delete(route("admin.order.delete", ["id" => -232]));
+
+        $this->assertDatabaseCount('orders', 1);
     }
 }
