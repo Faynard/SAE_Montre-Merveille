@@ -63,9 +63,7 @@ class UserController extends Controller
             return redirect()->intended(route('accueil.index'));
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return back();
     }
 
     public function doLogout()
