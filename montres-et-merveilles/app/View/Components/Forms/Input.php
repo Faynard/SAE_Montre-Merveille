@@ -17,8 +17,17 @@ class Input extends Component
         public string $type = 'text',
         public string $placeholder = '',
         public string $value = '',
+        public string $pattern = '',
+        public string $title = '',
+        public string $maxLength = '',
+        public string $inputmode = '',
     ) {
         //
+    }
+
+    public function isPattern(): bool
+    {
+        return $this->pattern !== '';
     }
 
     /**
