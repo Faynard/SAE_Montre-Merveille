@@ -23,8 +23,9 @@
 </head>
 
 <body>
-    @if (Session::has("hasNotification"))
-    <x-notification title="{{ Session::get('notificationTitle') }}" content="{{Session::get('notificationContent')}}" />
+    @if (Session::has('hasNotification'))
+        <x-notification title="{{ Session::get('notificationTitle') }}"
+            content="{{ Session::get('notificationContent') }}" />
     @endif
 
 
@@ -64,7 +65,7 @@
                 </a>
                 <div class="flex flex-col items-center gap-4">
                     <span class="font-['Catamaran']">Mathieu LE BRAS</span>
-                    <span class="font-['Catamaran']">Maximilien BAUSSON</span>
+                    <a href="https://github.com/MBausson" class="font-['Catamaran']">Maximilien BAUSSON</a>
                     <span class="font-['Catamaran']">Thomas HAY</span>
                     <span class="font-['Catamaran']">Louis VILLATTE</span>
                     <span class="font-['Catamaran']">Nolan VANDEMEULEBROUCKE</span>

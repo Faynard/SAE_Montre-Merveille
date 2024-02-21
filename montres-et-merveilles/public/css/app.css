@@ -87,3 +87,14 @@ header.notAccueill {
 .font-great-vibes {
     font-family: 'Great Vibes';
 }
+
+select {
+    appearance: none;
+    border-bottom: solid 2px #9ca3af;
+    padding-bottom: 8px !important;
+}
+
+select:focus {
+    outline: none;
+}
+
