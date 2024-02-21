@@ -28,7 +28,7 @@ class AdminController
 
         $order->delete();
 
-        return redirect()->route("admin.index");
+        return redirect()->route("admin.index")->with(["hasNotification" => true, "notificationTitle" => "Suppression", "notificationContent" => "La commande a bien été supprimée"]);
     }
 
     public function createProduct()

@@ -44,7 +44,7 @@ class UserController extends Controller
         }
 
         // Redirige l'utilisateur vers la page d'accueil ou la page qu'il voulait visiter
-        return redirect()->intended(route("accueil.index"));
+        return redirect()->intended(route("accueil.index"))->with(["hasNotification" => true, "notificationTitle" => "Connexion", "notificationContent" => "Vous êtes connecté à l'application"]);
     }
 
     // Affiche la page de connexion
@@ -68,7 +68,7 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('accueil.index'));
+            return redirect()->intended(route('accueil.index'))->with(["hasNotification" => true, "notificationTitle" => "Connexion", "notificationContent" => "Vous êtes connecté à l'application"]);
         }
 
         // Sinon on retourne un message d'erreur et on redirige l'utilisateur vers la page de connexion
@@ -82,7 +82,7 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('accueil.index');
+        return redirect()->route('accueil.index')->with(["hasNotification" => true, "notificationTitle" => "Déconnexion", "notificationContent" => "Vous êtes déconnecté de l'application"]);
     }
 
     // Affiche la page de profil
@@ -112,7 +112,7 @@ class UserController extends Controller
             "password" => Hash::make($credentials["password"]),
         ]);
 
-        return redirect()->route('user.profile');
+        return redirect()->route('user.profile')->with(["hasNotification" => true, "notificationTitle" => "Mise à jour", "notificationContent" => "Le profil a bien été mis à jour"]);
     }
 
     // Action du controller pour la suppression du profil
@@ -123,6 +123,6 @@ class UserController extends Controller
         User::destroy($user->id);
         Auth::logout(); // on déconnecte l'utilisateur pour pas qu'il ne reste connecté avec un compte supprimé
 
-        return redirect()->route('accueil.index');
+        return redirect()->route('accueil.index')->with(["hasNotification" => true, "notificationTitle" => "Suppression", "notificationContent" => "Votre compte a bien été supprimé"]);
     }
 }

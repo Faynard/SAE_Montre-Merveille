@@ -80,7 +80,7 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->route("product.index");
+        return redirect()->route("product.index")->with(["hasNotification" => true, "notificationTitle" => "Suppression", "notificationContent" => "Le produit a bien été supprimé"]);
     }
 
     //  Modifie la requête SQL permettant de récupérer tous les produits, en ajouter une clause WHERE par filtre renseigné

@@ -63,7 +63,7 @@ class OrderController extends Controller
         // Supprimer le panier de l'utilisateur
         $cart->delete();
 
-        return redirect()->intended(route("accueil.index"));
+        return redirect()->intended(route("accueil.index"))->with(["hasNotification" => true, "notificationTitle" => "Paiement", "notificationContent" => "Votre commande a bien été enregistrée"]);
     }
 
     // Méthode qui retourne le prix total des produits du panier
