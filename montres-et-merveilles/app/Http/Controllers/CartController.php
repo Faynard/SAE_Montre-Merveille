@@ -31,7 +31,7 @@ class CartController extends Controller
 
         $quantityItem->save();
 
-        return back();
+        return back()->with(["hasNotification" => true, "notificationTitle" => "Ajout", "notificationContent" => "L'article a bien été ajouté au panier"]);
     }
 
     /* suppression d'un article au panier de l'utilisateur,
@@ -57,12 +57,12 @@ class CartController extends Controller
         if ($quantityItem->quantity <= 0) {
             $quantityItem->delete();
 
-            return back();
+            return back()->with(["hasNotification" => true, "notificationTitle" => "Suppression", "notificationContent" => "L'article a bien été supprimé du panier"]);
         }
 
         $quantityItem->save();
 
-        return back();
+        return back()->with(["hasNotification" => true, "notificationTitle" => "Suppression", "notificationContent" => "La quantité de l'article a bien été diminuée dans le panier"]);
     }
 
     /* suppression d'un article, quelque soit sa quantité, du panier de l'utilisateur,
@@ -83,7 +83,7 @@ class CartController extends Controller
         $quantityItem = $this->getQuantityItem($cart->id, $product->id);
         $quantityItem->delete();
 
-        return back();
+        return back()->with(["hasNotification" => true, "notificationTitle" => "Suppression", "notificationContent" => "L'article a bien été supprimé du panier"]);
     }
 
     /* récupération de la quantité d'un article dans le panier de l'utilisateur

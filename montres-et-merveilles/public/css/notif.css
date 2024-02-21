@@ -1,0 +1,26 @@
+#notifContainer {
+    animation: slide-in-notif 0.5s ease-in-out forwards;
+}
+
+#notif-cooldown {
+    animation: cooldown 4s linear forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes slide-in-notif {
+    from {
+      bottom: -100px;
+    }
+    to {
+      bottom: 32px;
+    }
+}
+
+@keyframes cooldown {
+    from {
+      width: 100%;
+    }
+    to {
+      width: 0%;
+    }
+}

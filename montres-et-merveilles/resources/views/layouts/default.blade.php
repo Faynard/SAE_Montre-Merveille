@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
     <link rel="stylesheet" href="{{ asset('css/boutiques.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/notif.css') }}">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -22,6 +23,11 @@
 </head>
 
 <body>
+    @if (Session::has("hasNotification"))
+    <x-notification title="{{ Session::get('notificationTitle') }}" content="{{Session::get('notificationContent')}}" />
+    @endif
+
+
     <header>
         <nav id="navbar" class="navbar flex items-center justify-center gap-16 font-['Comfortaa'] uppercase h-28">
 
