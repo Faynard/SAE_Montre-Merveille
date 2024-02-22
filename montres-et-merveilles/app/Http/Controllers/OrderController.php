@@ -20,7 +20,8 @@ class OrderController extends Controller
 
         $cart = $user->cart();
 
-        if ($cart->quantityItems->count() == 0) {
+        //  Le panier de l'utilisateur ne doit pas être vide
+        if ($this->isCartEmpty($cart)) {
             return redirect()->intended(route("accueil.index"));
         }
 
@@ -40,8 +41,12 @@ class OrderController extends Controller
 
         // Je récupère l'utilisateur ainsi que l'id de son panier
         $user = Auth::user();
-
         $cart = $user->cart();
+
+        //  Le panier de l'utilisateur ne doit pas être vide
+        if ($this->isCartEmpty($cart)) {
+            return redirect()->intended(route("accueil.index"));
+        }
 
         // Création d'une nouvelle commande
         $newOrder = Order::create([
@@ -77,5 +82,11 @@ class OrderController extends Controller
         }
 
         return $totalPrice;
+    }
+
+    //  Un panier est vide s'il n'a pas de QuantityItems associé
+    private function isCartEmpty($cart)
+    {
+        return $cart->quantityItems->count() == 0;
     }
 }
