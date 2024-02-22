@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="mx-16">
+        <h1 class="font-cinzel text-4xl italic font-thin my-4">Commandes</h1>
+
         <table class="w-full bg-white shadow-md rounded-md overflow-hidden">
             <thead class="bg-black text-white">
                 <tr>
