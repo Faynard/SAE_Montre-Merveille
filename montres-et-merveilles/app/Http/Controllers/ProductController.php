@@ -50,10 +50,10 @@ class ProductController extends Controller
             abort(400);
         }
 
+        // recuperer le nombre de résultats pour savoir combien de pages on doit afficher
+        $products_count = $products_query->count();
         $products = $products_query->offset(($page - 1) * $page_length)->limit($page_length)->get();
 
-        // recuperer le nombre de produits dans la base de données pour savoir combien de pages on doit afficher
-        $products_count = Product::count();
         $nb_pages = (int) ceil($products_count / $page_length);
 
         //  Retourne la vue avec les données de page, produits et de filtres

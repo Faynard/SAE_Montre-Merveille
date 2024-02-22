@@ -30,12 +30,14 @@
                     <span id="filter-material-title" class="cursor-pointer transition hover:text-gray-500">Matériaux</span>
                 </div>
 
-                <div class="ml-auto">
+                <div class="flex gap-4 ml-auto">
+                    <a href="{{ route('product.index') }}">Retirer les filtres</a>
+
                     <button class="font-semibold underline underline-offset-4">Rechercher</button>
                 </div>
             </div>
 
-            <div>
+            <div class="flex flex-col lg:grid lg:grid-cols-3 gap-5">
                 <div id="filter-size-container" class="mt-8 hidden flex gap-8">
                     <label class="font-medium">Taille maximale (mm.)</label>
                     <div class="flex gap-2">
@@ -74,56 +76,56 @@
                         </select>
                     </div>
                 </div>
+            </div>
+
+            <div class="flex items-center place-content-between">
+                {{-- nb élément de la requête --}}
+                <p class="my-8 text-gray-400 font-thin">{{ $products_count }} montres</p>
+
+                {{-- pagination --}}
+                <div class="flex items-center gap-1">
+                    @for ($i = 1; $i <= $nb_pages; $i++)
+                        @if ($i == $page)
+                            {{-- index de la page actuel --}} <span class="text-lg font-bold">{{ $i }}</span>
+                        @else
+                            <a href="{{ route('product.index', ['page' => $i]) }}"
+                                class="text-base font-thin">{{ $i }}</a>
+                        @endif
+                    @endfor
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4">
+                @foreach ($products as $product)
+                    <article class="bg-neutral-200 p-6 flex flex-col items-center gap-6 group">
+                        <a href="{{ route('product.show', ['product' => $product->id]) }}" class="text-lg font-bold"><img
+                                class="w-40 drop-shadow-lg transition ease-in group-hover:scale-105 duration-500"
+                                src="{{ asset('images/montre_1.png') }}" /></a>
+
+                        <p class="flex flex-col items-center gap-2">
+                            <a href="{{ route('product.show', ['product' => $product->id]) }}"
+                                class="text-lg text-balance text-center font-bold">{{ $product->name }}</a>
+                            <span class="font-thin">Ultra-Complication Universelle</span>
+                        </p>
+
+                        <span class="text-sm font-light text-gray-500">
+                            {{ $product->movement }}, {{ $product->size }}mm, {{ $product->material }}
+                        </span>
+                    </article>
+                @endforeach
+            </div>
         </form>
 
-        <div class="flex items-center place-content-between">
-            {{-- nb élément de la requête --}}
-            <p class="my-8 text-gray-400 font-thin">{{ $products_count }} montres</p>
+        <script>
+            const filtersName = ["size", "movement", "material"];
 
-            {{-- pagination --}}
-            <div class="flex items-center gap-1">
-                @for ($i = 1; $i <= $nb_pages; $i++)
-                    @if ($i == $page)
-                        {{-- index de la page actuel --}} <span class="text-lg font-bold">{{ $i }}</span>
-                    @else
-                        <a href="{{ route('product.index', ['page' => $i]) }}"
-                            class="text-base font-thin">{{ $i }}</a>
-                    @endif
-                @endfor
-            </div>
-        </div>
+            filtersName.forEach(filter => {
+                const filterTitle = document.getElementById(`filter-${filter}-title`);
+                const filterContainer = document.getElementById(`filter-${filter}-container`);
 
-        <div class="grid grid-cols-3 gap-4">
-            @foreach ($products as $product)
-                <article class="bg-neutral-200 p-6 flex flex-col items-center gap-6 group">
-                    <a href="{{ route('product.show', ['product' => $product->id]) }}" class="text-lg font-bold"><img
-                            class="w-40 drop-shadow-lg transition ease-in group-hover:scale-105 duration-500"
-                            src="{{ asset('images/montre_1.png') }}" /></a>
-
-                    <p class="flex flex-col items-center gap-2">
-                        <a href="{{ route('product.show', ['product' => $product->id]) }}"
-                            class="text-lg text-balance text-center font-bold">{{ $product->name }}</a>
-                        <span class="font-thin">Ultra-Complication Universelle</span>
-                    </p>
-
-                    <span class="text-sm font-light text-gray-500">
-                        {{ $product->movement }}, {{ $product->size }}mm, {{ $product->material }}
-                    </span>
-                </article>
-            @endforeach
-        </div>
-    </div>
-
-    <script>
-        const filtersName = ["size", "movement", "material"];
-
-        filtersName.forEach(filter => {
-            const filterTitle = document.getElementById(`filter-${filter}-title`);
-            const filterContainer = document.getElementById(`filter-${filter}-container`);
-
-            filterTitle.addEventListener('click', function(e) {
-                filterContainer.classList.toggle("hidden");
+                filterTitle.addEventListener('click', function(e) {
+                    filterContainer.classList.toggle("hidden");
+                });
             });
-        });
-    </script>
-@endsection
+        </script>
+    @endsection
