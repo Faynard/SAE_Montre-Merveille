@@ -14,7 +14,7 @@
             </thead>
             <tbody>
                 @foreach ($orders as $order)
-                    <tr class="hover:bg-gray-100">
+                    <tr class="hover:bg-gray-100 text-center">
                         <td class="px-4 py-2">{{ $order->id }}</td>
                         <td>{{ $order->user->lastname }}</td>
                         <td>{{ $order->price }}</td>
@@ -32,7 +32,9 @@
             </tbody>
         </table>
         <div class="mt-8">
-            <a href="{{ route('admin.product.create') }}">Créer un produit</a>
+            <a href="{{ route('admin.product.create') }}">
+                <x-forms.button text="Créer un produit" />
+            </a>
         </div>
     </div>
 @endsection
